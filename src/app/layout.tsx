@@ -27,10 +27,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme='light'
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex flex-col min-h-screen">
         <Navber />
-        {children}
+        <main className="flex-1">
+          {children}
           <ToastContainer />
+        </main>
+        
           <Footer />
         </body>
     </html>

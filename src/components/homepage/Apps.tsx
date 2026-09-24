@@ -1,6 +1,7 @@
 import React from 'react';
 import {TApp} from '@/types/app.types'
 import Card from '@/components/homepage/Card';
+import Link from 'next/link';
 
 const Apps = async () => {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog');
@@ -14,8 +15,10 @@ const Apps = async () => {
             {
                 data.map((workerdata : TApp, ind : number)=> {
                     return (
-                       
-<Card key={ind} workerdata={workerdata} />
+<Link  key={ind}  href={`/apps/${workerdata.id}`}>
+<Card workerdata={workerdata} />
+</Link>
+                     
 
  );
   })}
