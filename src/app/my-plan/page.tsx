@@ -2,8 +2,10 @@
 
 
 import Card from '@/components/homepage/Card';
+import PlanCard from '@/components/PlanCard';
 import { PlanContext } from '@/PlanProvider';
 import { TApp } from '@/types/app.types';
+import Link from 'next/link';
 import React, { useContext } from 'react';
 
 const MyPlanPage = () => {
@@ -16,21 +18,21 @@ const MyPlanPage = () => {
         <div className='container mx-auto my-20 '>
             <div className='m-10  '>
 <h1 className='text-4xl font-bold'>MY PLAN</h1> 
-           <p className='text-slate-400'>Cap of five lifts for today. Finish them, then load more.</p>
-        <div className='flex gap-10 justify-around m-4 rounded shadow p-10 ' >
-            <div >
-                <span>Exercise</span>
-                <span className='text-[#CCFF00]'></span>
+           <p className='text-slate-400 m-2 mb-6'>Cap of five lifts for today. Finish them, then load more.</p>
+        <div className='flex gap-10 justify-around m-2 border-0 rounded shadow p-10 ' >
+            <div className='flex flex-col' >
+                <span className='font-bold'>Exercise</span>
+                <span className='bg-[#CCFF00]'> {addPlans.length} </span>
             
             </div>
-             <div>
+             <div className='font-bold flex flex-col'>
                 <span>Minutes</span>
-                <span className='text-[#CCFF00]'></span>
+                <span className='text-[#CCFF00]'> {addPlans.length}   </span>
             
             </div>
-             <div>
+             <div className='font-bold flex flex-col'>
                 <span>Calories</span>
-                <span className='text-[#CCFF00]'></span>
+                <span className='text-[#CCFF00]'> {addPlans.caloriesBurned} </span>
             
             </div>
         </div>
@@ -40,20 +42,28 @@ const MyPlanPage = () => {
    
            {/* main */}
          {hasData ? (   
-       <div className='flex justify-between w-full rounded gap-16 shadow border-2'>
+       <div className='flex justify-between border-0 m-4  rounded  '>
         {/* rightside */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
-            {addPlans.map((workerdata : TApp, ind : number)=> {
+        <div className="flex-1 w-full ga-20">
+            {addPlans.map((plansdata : TApp, ind : number)=> {
                                 return (
-          <Card workerdata={workerdata} key={ind}/>
+          // <PlanCard plansdata={plansdata} key={ind} />
+           <div key={ind} className='w-full rounded  border-0 shadow mb-4 flex justify-between'>
+                                <PlanCard plansdata={plansdata} />
+        {/* leftside */}
+           <div className="flex items-center gap-3 m-4">
+        <Link  href={`/apps/${plansdata.id}`} className="btn btn-outline rounded-2xl btn-sm">View Details</Link>
+        <button className="btn rounded-2xl bg-[#CCFF00] btn-sm text-black">✔ Mark as Done</button>
+        <button className="text-slate-500 font-bold hover:text-red-800">✕</button>
+      </div>
+
+                            </div>
+                            // bothside end div
              );
               })}   
         </div>
-        {/* leftside */}
-            <div>
- <button className='btn btn-primary'></button>
-          </div>  
-       </div>
+  
+      </div> 
           ) : (
          // No data state
         <div className="flex flex-col items-center justify-center py-20">
