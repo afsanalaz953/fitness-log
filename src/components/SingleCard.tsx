@@ -2,6 +2,7 @@ import { TApp } from '@/types/app.types';
 import Image from 'next/image';
 import React from 'react';
 import { RiInboxArchiveLine, RiSaveLine } from 'react-icons/ri';
+import PlanButton from './PlanButton';
 
 
 
@@ -99,7 +100,7 @@ const SingleCard = ({data}: {data: TApp}) => {
   {/* head */}
   <thead>
     <tr className='text-2xl font-bold text-black'>
-        INSTRUCTIONS
+      <th>INSTRUCTIONS</th>
      
     </tr>
   </thead>
@@ -119,10 +120,7 @@ const SingleCard = ({data}: {data: TApp}) => {
 
 
     <div className="card-actions justify-start gap-4 mt-4">
-      <button className="btn rounded-2xl bg-[#CCFF00] hover:bg-amber-200">
-        <span> <RiInboxArchiveLine /> </span>
-        <span>Add to today&apos;s plan   </span>
-        </button>
+      <PlanButton data={data} />
       <button className="btn rounded-2xl  hover:bg-[#CCFF00]"> 
         <span><RiSaveLine /></span>
       <span>Save for later</span>
