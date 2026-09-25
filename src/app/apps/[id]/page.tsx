@@ -1,5 +1,5 @@
 
-import SingleCard from '@/components/SingleCard'
+import SingleCard from '@/components/SingleCard';
 
 type TAppDetailsProps ={
     params:{

@@ -9,7 +9,7 @@ import { RiInboxArchiveLine, RiSaveLine } from 'react-icons/ri';
 const SingleCard = ({data}: {data: TApp}) => {
     return (
        <div className='container mx-auto'>
-            <div className="card card-side bg-base-100 shadow-sm container flex gap-10 mx-auto my-10">
+            <div className="card card-side bg-base-100 shadow-sm container flex gap-10 mx- my-10">
   <figure >
     <Image
       src={data.image}
