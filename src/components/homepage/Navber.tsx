@@ -11,7 +11,7 @@ const Navber = () => {
       console.log(addPlans, savedPlans, 'addPlans data in nav')
     return (
         
-            <div className="navbar bg-base-100 shadow-sm container mx-auto rounded">
+<div className="navbar  shadow-sm container mx-auto bg-black rounded">
               {/* // Mobile (dropdown) */}
   <div className="navbar-start">
     <div className="dropdown">
@@ -44,15 +44,15 @@ const Navber = () => {
      
     </ul>
   </div>
-  <div className="navbar-end flex gap-3">
-    <Link  href='/my-plan'   className="btn  font-bold  bg-[#CCFF00] hover:text-[#CCFF00] hover:bg-black   rounded-2xl">
-    <span>Plan </span>
-    <span>{addPlans?.length}</span>
+  <div className=" navbar-end flex gap-4  ">
+    <Link href='/my-plan'  className=" font-bold  rounded-2xl">
+    <span className='hover:text-[#CCFF00] hover:bg-black p-2 ml-2 rounded'>Plan </span>
+    <span className='bg-[#CCFF00] hover:text-[#CCFF00] w-10 h-10 text-black rounded '>{addPlans?.length}</span>
     
     </Link>
-    <Link href='/my-plan'   className="btn bg-[#CCFF00] hover:text-[#CCFF00] hover:bg-black  rounded-2xl">
-    <span>Saved</span>
-    <span>{savedPlans?.length}</span>
+    <Link href='/my-plan'   className=" font-bold  rounded-2xl  ">
+    <span className='hover:text-[#CCFF00] hover:bg-black rounded ml-2 p-2'>Saved</span>
+    <span className='bg-[#CCFF00] w-8 h-8 ml-2 text-black rounded-full hover:text-[#CCFF00]'>{savedPlans?.length}</span>
     
     </Link>
   </div>

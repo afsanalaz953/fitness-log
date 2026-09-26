@@ -1,7 +1,7 @@
 import { TApp } from '@/types/app.types';
 import Image from 'next/image';
 import React from 'react';
-import { RiInboxArchiveLine, RiSaveLine } from 'react-icons/ri';
+// import { RiInboxArchiveLine, RiSaveLine } from 'react-icons/ri';
 import PlanButton from './PlanButton';
 import SaveButton from './SaveButton';
 
@@ -10,8 +10,8 @@ import SaveButton from './SaveButton';
 
 const SingleCard = ({data}: {data: TApp}) => {
     return (
-       <div className='container mx-auto'>
-            <div className="card card-side bg-base-100 shadow-sm container flex gap-10 mx- my-10">
+       <div className='container mx-auto  '>
+            <div className="card card-side  bg-[#15171D]  shadow-sm container flex gap-10 mx- my-10">
   <figure >
     <Image
       src={data.image}
@@ -29,7 +29,7 @@ const SingleCard = ({data}: {data: TApp}) => {
        {data.muscleGroups.map((loggroup, index) => (
     <button
       key={index}
-      className="btn rounded-2xl bg-[#CCFF00] hover:bg-amber-200"
+      className="btn rounded-2xl bg-[#CCFF00]  text-black hover:bg-amber-200"
     >
       {loggroup}
     </button>
@@ -39,15 +39,7 @@ const SingleCard = ({data}: {data: TApp}) => {
  {/* big card start */}
 <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 m-4 shadow">
   <table className="table">
-    {/* head */}
-    {/* <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead> */}
+   
     <tbody>
       {/* row 1 */}
       <tr>
@@ -100,7 +92,7 @@ const SingleCard = ({data}: {data: TApp}) => {
 <table className="table mt-6 ">
   {/* head */}
   <thead>
-    <tr className='text-2xl font-bold text-black'>
+    <tr className='text-2xl font-bold text-white'>
       <th>INSTRUCTIONS</th>
      
     </tr>

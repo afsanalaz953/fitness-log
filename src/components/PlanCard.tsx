@@ -33,17 +33,17 @@ const PlanCard = ({plansdata}: {plansdata: TApp}) => {
              
            <div className='flex gap-2 '>
              <div className='flex gap-2'>
-               <span className='font-bold text-2xl w-5 h-5 bg-[#CCFF00]'><MdAccessTime /></span>
+               <span className='font-bold text-2xl w-5 h-5 rounded-full text-black bg-[#CCFF00]'><MdAccessTime /></span>
                <span className='font-bold text-sm' > {plansdata.duration} min</span>
              </div>
            
              <div className='flex gap-2'>
-               <span className='font-bold text-2xl w-5 h-5 bg-[#CCFF00] '><TiThumbsOk /></span>
+               <span className='font-bold text-2xl w-5 h-5 rounded-full text-black bg-[#CCFF00] '><TiThumbsOk /></span>
                <span className='font-bold text-sm' > {(plansdata.caloriesBurned)} </span>
              </div>
            
              <div className='flex gap-2'>
-               <div className='font-bold text-2xl w-5 h-5 bg-[#CCFF00]'><CiStar /></div>
+               <div className='font-bold text-2xl w-5 h-5 rounded-full text-black bg-[#CCFF00]'><CiStar /></div>
                <div className='font-bold text-sm'> {plansdata.rating} </div>
              </div>
            </div>

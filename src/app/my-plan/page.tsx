@@ -7,11 +7,12 @@ import { PlanContext } from '@/PlanProvider';
 import { TApp } from '@/types/app.types';
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-toastify';
 
 type TTab = 'add' | 'saved';
 
 const MyPlanPage = () => {
-    const {addPlans, savedPlans} = useContext(PlanContext);
+    const {addPlans, savedPlans, setAddPlans, setSavedPlans} = useContext(PlanContext);
     console.log(addPlans, savedPlans, 'addPlans data')
  const [activeTab, setActiveTab] = useState<TTab>('add');
  const [sortBy, setSortBy] = useState<'rating'| 'calories'| 'duration'>('duration');
@@ -34,6 +35,26 @@ if(sortBy === "duration"){
 const sortedAddPlans = sortAddPlans(addPlans)
 const sortedSavedPlans =  sortAddPlans(savedPlans)
 
+// remove button
+
+const handleremovePlan = (plansdata: TApp) => {
+  if (activeTab === 'add') {
+    setAddPlans((prev: TApp[]) =>
+      prev.filter((item: TApp) => item.id !== plansdata.id)
+    );
+  } else {
+    setSavedPlans((prev: TApp[]) =>
+      prev.filter((item: TApp) => item.id !== plansdata.id)
+    );
+  }
+   toast.success(`plan removed ✅`, {
+      position: "top-right",
+      autoClose: 2000,
+  })
+
+
+};
+
 
     const hasData = addPlans && addPlans.length > 0;
     const hasSavedData = savedPlans && savedPlans.length > 0;
@@ -53,15 +74,17 @@ const sortedSavedPlans =  sortAddPlans(savedPlans)
     0
   );
 
+  
+
     return (
         <div className='container mx-auto my-20 '>
             <div className='m-10  '>
 <h1 className='text-4xl font-bold'>MY PLAN</h1> 
            <p className='text-slate-400 m-2 mb-6'>Cap of five lifts for today. Finish them, then load more.</p>
-        <div className='flex gap-10 justify-around m-2 border-0 rounded shadow p-10 ' >
+        <div className='flex gap-10 justify-around  bg-[#15171D] border-0 rounded shadow p-10 ' >
             <div className='flex flex-col' >
                 <span className='font-bold'>Exercise</span>
-                <span className='bg-[#CCFF00]'> {currentPlans.length} </span>
+                <span className='text-[#CCFF00]'> {currentPlans.length} </span>
             
             </div>
              <div className='font-bold flex flex-col'>
@@ -77,17 +100,20 @@ const sortedSavedPlans =  sortAddPlans(savedPlans)
         </div>
      </div>
 {/* toggle */}
-<div className='togglemain flex justify-between rounded-2xl container  mx-auto '>
+<div className='togglemain bg-[#15171D] flex justify-between rounded-2xl container  mx-auto '>
 {/* toggleleft */}
-<div className="tabs tabs-border w-full m-4">
-  <input 
+<div className="tabs tabs-border  w-full m-4">
+  
+<input 
   type="radio" name="my_tabs_2" 
   className="tab" 
   aria-label="Today's Plan" 
    defaultChecked
     onChange={() => setActiveTab('add')}
   />
-  <div className="tab-content border-base-300 bg-base-100 w-full p-10">
+ 
+  
+  <div className="tab-content border-base-300 bg-base-100 w-full mt-6 ">
     {/* tab for plan */}
     <div className='grid grid-cols-1 '>
 
@@ -106,7 +132,7 @@ const sortedSavedPlans =  sortAddPlans(savedPlans)
            <div className="flex items-center gap-3 m-4">
         <Link  href={`/apps/${plansdata.id}`} className="btn btn-outline rounded-2xl btn-sm">View Details</Link>
         <button className="btn rounded-2xl bg-[#CCFF00] btn-sm text-black">✔ Mark as Done</button>
-        <button className="text-slate-500 font-bold hover:text-red-800">✕</button>
+        <button onClick={() => handleremovePlan(plansdata)} className="text-slate-500 font-bold hover:text-red-800">✕</button>
       </div>
 
                             </div>
@@ -118,12 +144,13 @@ const sortedSavedPlans =  sortAddPlans(savedPlans)
       </div> 
           ) : (
          // No data state
-        <div className="flex flex-col items-center justify-center py-20">
+        <div className="flex flex-col items-center justify-center  py-10">
           <h2 className="text-2xl font-semibold text-slate-500">No Data</h2>
           <p className="text-slate-400 mt-2">
-            You don't have any plans yet. Add one to get started.
+            You don&apos;t have any plans yet. Add one to get started.
           </p>
-          <button className="btn btn-primary mt-6">Add Plan</button>
+          {/* <button className="btn btn-primary mt-6">Add Plan</button> */}
+          <Link href="/" className="btn btn-primary mt-6">Add Plan</Link>
         </div>
       )}
         </div>
@@ -147,7 +174,7 @@ const sortedSavedPlans =  sortAddPlans(savedPlans)
          {hasSavedData ? (   
        <div className='flex justify-between border-0 m-4  rounded  '>
         {/* rightside */}
-        <div className="flex-1 w-full ga-20">
+        <div className="flex-1 w-full gap-20">
             {sortedSavedPlans.map((plansdata : TApp, ind : number)=> {
                                 return (
           // <PlanCard plansdata={plansdata} key={ind} />
@@ -157,7 +184,7 @@ const sortedSavedPlans =  sortAddPlans(savedPlans)
            <div className="flex items-center gap-3 m-4">
         <Link  href={`/apps/${plansdata.id}`} className="btn btn-outline rounded-2xl btn-sm">View Details</Link>
         <button className="btn rounded-2xl bg-[#CCFF00] btn-sm text-black">✔ Mark as Done</button>
-        <button className="text-slate-500 font-bold hover:text-red-800">✕</button>
+        <button  onClick={() => handleremovePlan(plansdata)} className="text-slate-500 font-bold hover:text-red-800">✕</button>
       </div>
 
                             </div>
@@ -174,7 +201,7 @@ const sortedSavedPlans =  sortAddPlans(savedPlans)
           <p className="text-slate-400 mt-2">
             You don&apos;t have any plans yet. Add one to get started.
           </p>
-          <button className="btn btn-primary mt-6">Add Plan</button>
+        <Link href="/" className="btn btn-primary mt-6">Add Plan</Link>
         </div>
       )}
         </div>

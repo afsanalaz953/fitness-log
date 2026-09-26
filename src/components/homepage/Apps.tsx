@@ -8,8 +8,8 @@ const Apps = async () => {
     const data = await res.json();
     console.log (data, 'homefetchdata')
     return (
-        <div className='container mx-auto'>
-           <h1 className='font-bold mx-4'>THE LIBRARY</h1>
+        <div className='container mx-auto bg-[#15171D] shadow rounded my-10'>
+           <h1 className='font-bold mx-4 my-4 text-4xl'>THE LIBRARY</h1>
            <h2 className='mx-4'> Twelve lifts covering every major muscle group. </h2> 
            <div className='grid grid-cols-3 gap-4   my-6'>
             {

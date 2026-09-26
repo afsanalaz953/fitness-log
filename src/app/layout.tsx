@@ -25,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme='light'
+      data-theme='dark'
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex flex-col min-h-screen">
@@ -33,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
            <Navber />
            <main className="flex-1">
              {children}
-              <ToastContainer />
+              <ToastContainer position="top-right" autoClose={2000} theme="colored" />
             </main>
         
             <Footer />

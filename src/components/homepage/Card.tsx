@@ -9,7 +9,7 @@ import { TiThumbsOk } from 'react-icons/ti';
 export default function Card  ({workerdata}: {workerdata: TApp}) {
     return (
         <div>
-            <div className="card  bg-base-100 card-xs shadow-sm  ">
+            <div className="card  bg-base-100 card-xs shadow-sm bg-#15171D[] ">
   <div className="card bg-base-100  shadow-sm">
   <figure className=' w-full h-65 '>
     <Image
@@ -25,7 +25,7 @@ export default function Card  ({workerdata}: {workerdata: TApp}) {
        {workerdata.muscleGroups.map((group, index) => (
     <button
       key={index}
-      className="btn rounded-2xl bg-[#CCFF00] hover:bg-amber-200"
+      className="btn rounded-2xl bg-[#CCFF00] text-black hover:bg-amber-200"
     >
       {group}
     </button>
@@ -47,12 +47,12 @@ export default function Card  ({workerdata}: {workerdata: TApp}) {
   </div>
 
   <div className='flex gap-2'>
-    <span className='font-bold text-2xl'><TiThumbsOk /></span>
+    <span className='font-bold text-2xl '><TiThumbsOk /></span>
     <span className='font-bold text-lg' > {workerdata.caloriesBurned} </span>
   </div>
 
   <div className='flex gap-2'>
-    <div className='font-bold text-2xl'><CiStar /></div>
+    <div className='font-bold text-2xl '><CiStar /></div>
     <div className='font-bold text-lg'> {workerdata.rating} </div>
   </div>
 </div>

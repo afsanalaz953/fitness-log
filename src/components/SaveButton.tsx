@@ -5,6 +5,7 @@ import React, { useContext } from 'react';
 import { RiInboxArchiveLine, RiSaveLine } from 'react-icons/ri';
 import Link from 'next/link';
 import { PlanContext } from '@/PlanProvider';
+import { toast } from 'react-toastify';
 
 
 const SaveButton = ({data}: {data: TApp}) => {
@@ -17,6 +18,11 @@ console.log(PlanContext, savedPlans, setSavedPlans, 'savedcontext data ')
     const handlePlan = () =>{
         console.log( 'Added Plan button', data, 'currentData')
         setSavedPlans([...savedPlans, data])
+
+           toast.success(`plan saved ✅`, {
+              position: "top-right",
+              autoClose: 2000,
+          })
     }
 
 
