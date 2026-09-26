@@ -11,13 +11,13 @@ import SaveButton from './SaveButton';
 const SingleCard = ({data}: {data: TApp}) => {
     return (
        <div className='container mx-auto  '>
-            <div className="card card-side  bg-[#15171D]  shadow-sm container flex gap-10 mx- my-10">
+            <div className="card  bg-[#15171D]  shadow-sm container flex flex-col md:flex-row gap-2 mx-auto my-10">
   <figure >
     <Image
       src={data.image}
       alt="fitness"
       width={500} 
-      height={700}
+      height={1100}
       className='rounded-2xl'
       />
   </figure>

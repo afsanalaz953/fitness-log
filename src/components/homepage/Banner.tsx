@@ -4,7 +4,7 @@ import bannerimg  from '@/assets/banner.png'
 
 const Banner = () => {
     return (
-        <div className='container my-10 mx-auto flex justify-between rounded bg-[#15171D]  shadow gap-6'>
+        <div className='container my-10 mx-auto flex md:flex-row justify-between rounded bg-[#15171D]  shadow gap-6'>
             <div className='m-10 p-4 space-y-6'>
                 <p className='font-bold text-[#CCFF00]'>WORKOUT LIBRARY</p>
                 <h1 className='text-4xl font-bold'>TRAIN WITH INTENT. LOG

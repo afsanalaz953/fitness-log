@@ -1,6 +1,7 @@
 'use client'
 
 
+import MarkAsDoneButton from '@/components/MarkDoneButton';
 // import Card from '@/components/homepage/Card';
 import PlanCard from '@/components/PlanCard';
 import { PlanContext } from '@/PlanProvider';
@@ -15,6 +16,7 @@ const MyPlanPage = () => {
     const {addPlans, savedPlans, setAddPlans, setSavedPlans} = useContext(PlanContext);
     console.log(addPlans, savedPlans, 'addPlans data')
  const [activeTab, setActiveTab] = useState<TTab>('add');
+ const [doneIds, setDoneIds] = useState<number[]>([]);
  const [sortBy, setSortBy] = useState<'rating'| 'calories'| 'duration'>('duration');
 console.log(sortBy, 'sortby')
 
@@ -30,6 +32,10 @@ if(sortBy === "duration"){
 }
  return sortedPlans;
 }
+
+const handleMarkAsDone = (id: number) => {
+  setDoneIds((prev) => [...prev, id]);
+};
 
 // variable creation for addPlans, savedPlans
 const sortedAddPlans = sortAddPlans(addPlans)
@@ -47,6 +53,10 @@ const handleremovePlan = (plansdata: TApp) => {
       prev.filter((item: TApp) => item.id !== plansdata.id)
     );
   }
+
+    // 👇 এই লাইনটা এখানে বসাও
+  setDoneIds((prev) => prev.filter((id) => id !== plansdata.id));
+
    toast.success(`plan removed ✅`, {
       position: "top-right",
       autoClose: 2000,
@@ -100,7 +110,8 @@ const handleremovePlan = (plansdata: TApp) => {
         </div>
      </div>
 {/* toggle */}
-<div className='togglemain bg-[#15171D] flex justify-between rounded-2xl container  mx-auto '>
+{/* <div className='togglemain bg-[#15171D] flex justify-between rounded-2xl container  mx-auto '> */}
+<div className='togglemain bg-[#15171D] flex flex-col lg:flex-row lg:items-start lg:justify-between  rounded-2xl container  mx-auto '>
 {/* toggleleft */}
 <div className="tabs tabs-border  w-full m-4">
   
@@ -131,7 +142,17 @@ const handleremovePlan = (plansdata: TApp) => {
         {/* leftside */}
            <div className="flex items-center gap-3 m-4">
         <Link  href={`/apps/${plansdata.id}`} className="btn btn-outline rounded-2xl btn-sm">View Details</Link>
-        <button className="btn rounded-2xl bg-[#CCFF00] btn-sm text-black">✔ Mark as Done</button>
+        {/* <button className="btn rounded-2xl bg-[#CCFF00] btn-sm text-black">✔ Mark as Done</button> */}
+        {/* <MarkAsDoneButton
+  planId={plansdata.id}
+  isDone={doneIds.includes(plansdata.id)}
+  onMarkDone={handleMarkAsDone}
+/> */}
+<MarkAsDoneButton
+  planId={plansdata.id}
+  isDone={doneIds.includes(plansdata.id)}
+  onMarkDone={handleMarkAsDone}
+/>
         <button onClick={() => handleremovePlan(plansdata)} className="text-slate-500 font-bold hover:text-red-800">✕</button>
       </div>
 
@@ -223,9 +244,9 @@ const handleremovePlan = (plansdata: TApp) => {
   
   >
   <option disabled={true}>Sort By</option>
-  <option value={'durtion'}>duration</option>
-  <option value={'calories'}>calories</option>
-  <option value={'rating'}>rating</option>
+  <option value='durtion'>duration</option>
+  <option value='calories'>calories</option>
+  <option value='rating'>rating</option>
  
 </select>
   {/* </div> */}
