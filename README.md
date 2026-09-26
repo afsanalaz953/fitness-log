@@ -24,4 +24,4 @@ Technologies used :
 
 
 
-Live Link:  https://fitness-51xn21k92-ben1.vercel.app
+Live Link:  https://fitness-log-iota.vercel.app
