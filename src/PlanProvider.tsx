@@ -7,12 +7,16 @@ import { TApp } from '@/types/app.types';
 type TPlanContext={
     addPlans : TApp[];
     setAddPlans : React.Dispatch<React.SetStateAction<TApp[]>>;
+    savedPlans: TApp[]; 
+    setSavedPlans : React.Dispatch<React.SetStateAction<TApp[]>>;
 }
 
 // contexttypes pass kora contextr modhe
 export const PlanContext = createContext<TPlanContext>({
 addPlans: [],
 setAddPlans: () => {},
+savedPlans: [],
+setSavedPlans: () => {},
 });
 
 
@@ -20,6 +24,7 @@ setAddPlans: () => {},
 const PlanProvider = ({children}: {children: ReactNode}) => {
     // state r type TApp array
     const [addPlans, setAddPlans] = useState<TApp[]>([])
+    const [savedPlans, setSavedPlans] = useState<TApp[]>([])
 
     // const sharedData = {
     //     addPlans,
@@ -27,7 +32,7 @@ const PlanProvider = ({children}: {children: ReactNode}) => {
     // }
     return (
         <PlanContext.Provider value={{ addPlans,
-        setAddPlans,}}>
+        setAddPlans, savedPlans, setSavedPlans}}>
             {children}
         </PlanContext.Provider>
     );

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { RiInboxArchiveLine, RiSaveLine } from 'react-icons/ri';
 import PlanButton from './PlanButton';
+import SaveButton from './SaveButton';
 
 
 
@@ -121,10 +122,7 @@ const SingleCard = ({data}: {data: TApp}) => {
 
     <div className="card-actions justify-start gap-4 mt-4">
       <PlanButton data={data} />
-      <button className="btn rounded-2xl  hover:bg-[#CCFF00]"> 
-        <span><RiSaveLine /></span>
-      <span>Save for later</span>
-      </button>
+      <SaveButton data = {data} />
     </div>
   </div>
 </div>
