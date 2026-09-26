@@ -1,9 +1,14 @@
-import React from 'react';
+'use client'
+
+import React, { useContext } from 'react';
 import Link from 'next/link'
 import logoimg from '@/assets/logo.png'
 import Image from 'next/image'
+import { PlanContext } from '@/PlanProvider';
 
 const Navber = () => {
+   const {addPlans, savedPlans} = useContext(PlanContext);
+      console.log(addPlans, savedPlans, 'addPlans data in nav')
     return (
         
             <div className="navbar bg-base-100 shadow-sm container mx-auto rounded">
@@ -40,8 +45,16 @@ const Navber = () => {
     </ul>
   </div>
   <div className="navbar-end flex gap-3">
-    <Link  href='/my-plan'   className="btn  font-bold  bg-[#CCFF00] hover:text-[#CCFF00] hover:bg-black   rounded-2xl">Plan</Link>
-    <Link href='/my-plan'   className="btn bg-[#CCFF00] hover:text-[#CCFF00] hover:bg-black  rounded-2xl">Saved</Link>
+    <Link  href='/my-plan'   className="btn  font-bold  bg-[#CCFF00] hover:text-[#CCFF00] hover:bg-black   rounded-2xl">
+    <span>Plan </span>
+    <span>{addPlans?.length}</span>
+    
+    </Link>
+    <Link href='/my-plan'   className="btn bg-[#CCFF00] hover:text-[#CCFF00] hover:bg-black  rounded-2xl">
+    <span>Saved</span>
+    <span>{savedPlans?.length}</span>
+    
+    </Link>
   </div>
 </div>
             
